@@ -803,6 +803,10 @@
                             印刷/保存
                         </button>
                     </div>
+                    <button onclick="confirmAndSendData()"
+                        class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-lg text-base hover:bg-emerald-700 transition no-print mt-2">
+                        📤 データを送信する
+                    </button>
                     <button onclick="location.reload()"
                         class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-bold">最初の画面に戻る</button>
                     <div id="fallback-msg" class="text-[10px] text-gray-500 bg-gray-100 p-2 rounded text-center">
@@ -813,6 +817,7 @@
         </div> <!-- app-container の閉じ -->
 
         <script>
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycbzX4xbWE-GIFKBwuQAAFOrN3GHi7Tp0qprLUB3FvcgGJKxwsX4L8_9Ugu7QA0G33lK2/exec';
             const form = document.getElementById('measurement-form');
             const inputSection = document.getElementById('input-section');
             const resultSection = document.getElementById('result-section');
@@ -1080,6 +1085,43 @@
                     btn.innerHTML = originalText;
                     btn.disabled = false;
                 }
+            }
+
+            function confirmAndSendData() {
+                const confirmed = confirm(
+                    "測定データを送信してもよろしいですか？\n\n" +
+                    "送信されるデータ：\n" +
+                    "・性別・年齢層・身長\n" +
+                    "・2ステップ測定値\n" +
+                    "・30秒椅子立ち上がり回数\n" +
+                    "・片足立ち秒数・測定方法\n\n" +
+                    "個人を特定する情報は含まれません。"
+                );
+                if (!confirmed) return;
+
+                // 入力フォームから値を取得
+                const payload = {
+                    gender: document.getElementById('gender').value,
+                    ageGroup: document.getElementById('age-group').value,
+                    height: document.getElementById('height').value,
+                    twoStep: document.getElementById('two-step').value,
+                    cs30: document.getElementById('cs30').value,
+                    oneLeg: document.getElementById('one-leg').value,
+                    oneLegMethod: document.getElementById('one-leg-method').value
+                };
+
+                fetch(GAS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                    .then(() => {
+                        alert('✅ データを送信しました。ご協力ありがとうございました！');
+                    })
+                    .catch(() => {
+                        alert('❌ 送信に失敗しました。ネットワーク接続を確認してください。');
+                    });
             }
         </script>
 </body>
