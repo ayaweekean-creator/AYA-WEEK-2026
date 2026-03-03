@@ -341,7 +341,8 @@
                                     がん自体あるいは「がん」の治療によって、骨・関節・筋肉・神経などの運動器の障害が起きて移動機能が低下した状態です。
                                 </p>
                                 <p class="text-[10px] text-indigo-700 font-bold">
-                            ロコモONLINE：<a href="https://locomo-joa.jp/locomo_cancer" target="_blank" class="underline hover:text-indigo-900">https://locomo-joa.jp/locomo_cancer</a>
+                                    ロコモONLINE：<a href="https://locomo-joa.jp/locomo_cancer" target="_blank"
+                                        class="underline hover:text-indigo-900">https://locomo-joa.jp/locomo_cancer</a>
                             </div>
                         </div>
                     </div>
@@ -803,11 +804,11 @@
                             印刷/保存
                         </button>
                     </div>
-                    <button onclick="confirmAndSendData()"
+                    <button id="send-data-btn" onclick="confirmAndSendData()"
                         class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-lg text-base hover:bg-emerald-700 transition no-print mt-2">
                         📤 事務局へデータ提供
                     </button>
-                    <button onclick="location.reload()"
+                    <button onclick="backToInput()"
                         class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-bold">最初の画面に戻る</button>
                     <div id="fallback-msg" class="text-[10px] text-gray-500 bg-gray-100 p-2 rounded text-center">
                         PDF保存が動かない場合は「印刷」から「PDFとして保存」を選択、またはスクリーンショットを撮ってください。
@@ -824,9 +825,10 @@
 
             // フォームデータの永続化
             const STORAGE_KEY = 'physical_feedback_data';
+            const SENT_DATA_KEY = 'physical_feedback_sent_data';
 
-            function saveToLocalStorage() {
-                const data = {
+            function getCurrentPayload() {
+                return {
                     gender: document.getElementById('gender').value,
                     ageGroup: document.getElementById('age-group').value,
                     height: document.getElementById('height').value,
@@ -835,6 +837,10 @@
                     oneLeg: document.getElementById('one-leg').value,
                     oneLegMethod: document.getElementById('one-leg-method').value
                 };
+            }
+
+            function saveToLocalStorage() {
+                const data = getCurrentPayload();
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
             }
 
@@ -999,12 +1005,39 @@
 
                     inputSection.classList.add('hidden');
                     resultSection.classList.remove('hidden');
+                    updateSubmitButtonState();
                     switchTab('summary');
                     window.scrollTo(0, 0);
                 } catch (err) {
                     console.error(err);
                     alert("計算中にエラーが発生しました。入力を確認してください。");
                 }
+            }
+
+            function updateSubmitButtonState() {
+                const btn = document.getElementById('send-data-btn');
+                if (!btn) return;
+
+                const currentPayload = JSON.stringify(getCurrentPayload());
+                const sentPayload = localStorage.getItem(SENT_DATA_KEY);
+
+                if (sentPayload && currentPayload === sentPayload) {
+                    btn.innerText = "✅ 送信済";
+                    btn.disabled = true;
+                    btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+                    btn.classList.add('bg-gray-400', 'cursor-not-allowed');
+                } else {
+                    btn.innerText = "📤 事務局へデータ提供";
+                    btn.disabled = false;
+                    btn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                }
+            }
+
+            function backToInput() {
+                inputSection.classList.remove('hidden');
+                resultSection.classList.add('hidden');
+                window.scrollTo(0, 0);
             }
 
             function switchTab(tab) {
@@ -1117,6 +1150,8 @@
                     body: JSON.stringify(payload)
                 })
                     .then(() => {
+                        localStorage.setItem(SENT_DATA_KEY, JSON.stringify(payload));
+                        updateSubmitButtonState();
                         alert('✅ データを送信しました。ご協力ありがとうございました！');
                     })
                     .catch(() => {
