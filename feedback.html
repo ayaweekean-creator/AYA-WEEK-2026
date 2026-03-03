@@ -805,7 +805,7 @@
                     </div>
                     <button onclick="confirmAndSendData()"
                         class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-lg text-base hover:bg-emerald-700 transition no-print mt-2">
-                        📤 データを送信する
+                        📤 事務局へデータ提供
                     </button>
                     <button onclick="location.reload()"
                         class="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-bold">最初の画面に戻る</button>
@@ -1089,12 +1089,12 @@
 
             function confirmAndSendData() {
                 const confirmed = confirm(
-                    "測定データを送信してもよろしいですか？\n\n" +
+                    "測定データを事務局へ送信してもよろしいですか？\n" +
                     "送信されるデータ：\n" +
                     "・性別・年齢層・身長\n" +
                     "・2ステップ測定値\n" +
                     "・30秒椅子立ち上がり回数\n" +
-                    "・片足立ち秒数・測定方法\n\n" +
+                    "・片足立ち秒数・測定方法\n" +
                     "個人を特定する情報は含まれません。"
                 );
                 if (!confirmed) return;
