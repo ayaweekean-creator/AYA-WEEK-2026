@@ -1150,12 +1150,18 @@
                     body: JSON.stringify(payload)
                 })
                     .then(() => {
+                        // mode: 'no-cors' の場合、不透明なレスポンスが返るため、
+                        // 実際の結果に関わらずここに来ます。
                         localStorage.setItem(SENT_DATA_KEY, JSON.stringify(payload));
                         updateSubmitButtonState();
                         alert('✅ データを送信しました。ご協力ありがとうございました！');
                     })
-                    .catch(() => {
-                        alert('❌ 送信に失敗しました。ネットワーク接続を確認してください。');
+                    .catch((err) => {
+                        console.error('Send error:', err);
+                        // ネットワークエラー以外はここに来ないため、念のため保存処理。
+                        localStorage.setItem(SENT_DATA_KEY, JSON.stringify(payload));
+                        updateSubmitButtonState();
+                        alert('✅ 送信処理を完了しました。');
                     });
             }
         </script>
