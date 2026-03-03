@@ -277,7 +277,7 @@
                                 <button onclick="switchTab('summary')" id="tab-summary"
                                     class="flex-1 py-1 px-3 rounded text-[11px] font-bold bg-white text-indigo-700">結果一覧</button>
                                 <button onclick="switchTab('details')" id="tab-details"
-                                    class="flex-1 py-1 px-3 rounded text-[11px] font-bold text-white">詳細データ</button>
+                                    class="flex-1 py-1 px-3 rounded text-[11px] font-bold text-white">年代別平均値</button>
                             </div>
                         </div>
 
@@ -338,10 +338,10 @@
                             <div class="explain-box p-4 bg-rose-50 rounded-xl border border-rose-200 avoid-break">
                                 <h3 class="text-rose-800 font-bold text-sm mb-1">がんロコモとは？</h3>
                                 <p class="text-xs text-gray-700 leading-tight mb-1">
-                                    がん自体や治療により移動能力が落ちた状態です。健康の維持には、早期に気づくことが大切です。
+                                    がん自体あるいは「がん」の治療によって、骨・関節・筋肉・神経などの運動器の障害が起きて移動機能が低下した状態です。
                                 </p>
                                 <p class="text-[10px] text-indigo-700 font-bold">
-                                    ロコモONLINE：https://locomo-joa.jp/locomo_cancer</p>
+                            ロコモONLINE：<a href="https://locomo-joa.jp/locomo_cancer" target="_blank" class="underline hover:text-indigo-900">https://locomo-joa.jp/locomo_cancer</a>
                             </div>
                         </div>
                     </div>
@@ -352,10 +352,10 @@
                         <div class="mb-6 bg-indigo-600 p-1 rounded-xl flex items-center shadow-inner no-print max-w-xs mx-auto"
                             data-html2canvas-ignore="true">
                             <button onclick="switchTab('summary')"
-                                class="flex-1 py-1 px-3 rounded text-[11px] font-bold text-white">結果サマリー</button>
+                                class="flex-1 py-1 px-3 rounded text-[11px] font-bold text-white">結果一覧</button>
                             <div
                                 class="flex-1 py-1 px-3 rounded text-[11px] font-bold bg-white text-indigo-700 shadow-sm text-center">
-                                詳細データ</div>
+                                年代別平均値</div>
                         </div>
 
                         <div class="space-y-6">
@@ -368,8 +368,8 @@
                                     <thead class="bg-slate-100 text-gray-700 text-center font-bold">
                                         <tr>
                                             <th class="border-b border-gray-200 p-2 w-1/4">年代</th>
-                                            <th class="border-b border-gray-200 p-2">男平均</th>
-                                            <th class="border-b border-gray-200 p-2">女平均</th>
+                                            <th class="border-b border-gray-200 p-2">男性平均</th>
+                                            <th class="border-b border-gray-200 p-2">女性平均</th>
                                             <th class="border-b border-gray-200 p-2">判定基準</th>
                                         </tr>
                                     </thead>
@@ -426,8 +426,8 @@
                                     <thead class="bg-slate-100 text-gray-700 text-center font-bold">
                                         <tr>
                                             <th class="border-b border-gray-200 p-2 w-1/4">年代</th>
-                                            <th class="border-b border-gray-200 p-2">男平均（5段階評価の3に相当）</th>
-                                            <th class="border-b border-gray-200 p-2">女平均（5段階評価の3に相当）</th>
+                                            <th class="border-b border-gray-200 p-2">男性平均（5段階評価の3に相当）</th>
+                                            <th class="border-b border-gray-200 p-2">女性平均（5段階評価の3に相当）</th>
                                             <th class="border-b border-gray-200 p-2">判定基準</th>
                                         </tr>
                                     </thead>
@@ -505,8 +505,8 @@
                                             <thead class="bg-blue-50 text-gray-700 text-center font-bold">
                                                 <tr>
                                                     <th class="border-b border-gray-200 p-2 w-1/4">年代</th>
-                                                    <th class="border-b border-gray-200 p-2">男平均（5段階評価の3に相当）</th>
-                                                    <th class="border-b border-gray-200 p-2">女平均（5段階評価の3に相当）</th>
+                                                    <th class="border-b border-gray-200 p-2">男性平均（5段階評価の3に相当）</th>
+                                                    <th class="border-b border-gray-200 p-2">女性平均（5段階評価の3に相当）</th>
                                                     <th class="border-b border-gray-200 p-2">判定基準</th>
                                                 </tr>
                                             </thead>
@@ -556,8 +556,8 @@
                                             <thead class="bg-blue-50 text-gray-700 text-center font-bold">
                                                 <tr>
                                                     <th class="border-b border-gray-200 p-2 w-1/4">年代</th>
-                                                    <th class="border-b border-gray-200 p-2">男平均（5段階評価の3に相当）</th>
-                                                    <th class="border-b border-gray-200 p-2">女平均（5段階評価の3に相当）</th>
+                                                    <th class="border-b border-gray-200 p-2">男性平均（5段階評価の3に相当）</th>
+                                                    <th class="border-b border-gray-200 p-2">女性平均（5段階評価の3に相当）</th>
                                                     <th class="border-b border-gray-200 p-2">判定基準</th>
                                                 </tr>
                                             </thead>
@@ -600,8 +600,8 @@
                                 <thead>
                                     <tr>
                                         <th style="width:25%">年代</th>
-                                        <th style="width:25%">男平均</th>
-                                        <th style="width:25%">女平均</th>
+                                        <th style="width:25%">男性平均</th>
+                                        <th style="width:25%">女性平均</th>
                                         <th style="width:25%">判定基準</th>
                                     </tr>
                                 </thead>
@@ -651,8 +651,8 @@
                                 <thead>
                                     <tr>
                                         <th style="width:25%">年代</th>
-                                        <th style="width:25%">男平均(3相当)</th>
-                                        <th style="width:25%">女平均(3相当)</th>
+                                        <th style="width:25%">男性平均(3相当)</th>
+                                        <th style="width:25%">女性平均(3相当)</th>
                                         <th style="width:25%">判定基準</th>
                                     </tr>
                                 </thead>
@@ -707,7 +707,7 @@
                                 </tbody>
                             </table>
                             <p class="text-[9px] text-gray-500">参照：日本健康運動研究所
-                                (CS30)<br>https://jhei.net/exer/measurement/me05.html</p>
+                                (30秒椅子立ち上がり)<br>https://jhei.net/exer/measurement/me05.html</p>
                         </div>
                     </div>
                     <div id="p3" class="pdf-page pdf-page-last bg-white">
@@ -721,8 +721,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width:20%">年代</th>
-                                            <th style="width:30%">男平均(3相当)</th>
-                                            <th style="width:30%">女平均(3相当)</th>
+                                            <th style="width:30%">男性平均(3相当)</th>
+                                            <th style="width:30%">女性平均(3相当)</th>
                                             <th style="width:20%">判定基準</th>
                                         </tr>
                                     </thead>
@@ -764,8 +764,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width:20%">年代</th>
-                                            <th style="width:30%">男平均</th>
-                                            <th style="width:30%">女平均</th>
+                                            <th style="width:30%">男性平均</th>
+                                            <th style="width:30%">女性平均</th>
                                             <th style="width:20%">判定基準</th>
                                         </tr>
                                     </thead>
